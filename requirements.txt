@@ -1,2 +1,6 @@
 pyTelegramBotAPI
 PySocks
+string
+random
+string
+sqlite3
