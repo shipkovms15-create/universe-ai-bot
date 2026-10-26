@@ -13,7 +13,7 @@ import telebot
 from telebot import types
 
 # === НАСТРОЙКИ ===
-TOKEN = "8503313877:AAEonBkSLpmTLZ4c-aCmpOAWKnCLNZRSbgg"  # Вставь сюда токен своего бота от BotFather
+TOKEN = "8503313877:AAEonBkSLpmTLZ4c-aCmpOAWKnCLNZRSbgg"  # Токен твоего бота от BotFather
 
 # Твой юзернейм в Telegram (без @), чтобы получить права администратора
 ADMIN_USERNAMES = ["molodoypacanzatazit"]
@@ -31,10 +31,8 @@ TARIFFS = {
 
 bot = telebot.TeleBot(TOKEN)
 
-# === СИНХРОНИЗАЦИЯ БАЗЫ ДАННЫХ С ПРОГРАММОЙ ЧЕРЕЗ APPDATA ===
-APP_DATA_DIR = os.path.join(os.environ.get('APPDATA', os.path.expanduser('~')), 'UniverseAI')
-os.makedirs(APP_DATA_DIR, exist_ok=True)
-DB_PATH = os.path.join(APP_DATA_DIR, "universe_system.db")
+# === ПУТЬ К БАЗЕ ДАННЫХ (теперь рядом со скриптом для хостинга) ===
+DB_PATH = os.path.join(os.path.dirname(__file__), "universe_system.db")
 
 # === ИНИЦИАЛИЗАЦИЯ И МИГРАЦИЯ БАЗЫ ДАННЫХ ===
 def init_db():
@@ -293,6 +291,5 @@ def help_handler(message):
 # === ЗАПУСК БОТА ===
 if __name__ == "__main__":
     init_db()
-    print("[Система]: Бот запущен и синхронизирован с папкой AppData.")
+    print("[Система]: Бот запущен.")
     bot.infinity_polling(timeout=10, long_polling_timeout=5)
-    
